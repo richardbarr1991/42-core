@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_div_mod.c                                       :+:      :+:    :+:   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 15:50:21 by rbarr             #+#    #+#             */
-/*   Updated: 2023/11/28 15:59:01 by rbarr            ###   ########.fr       */
+/*   Created: 2023/11/28 16:20:42 by rbarr             #+#    #+#             */
+/*   Updated: 2023/11/28 16:35:00 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_div_mod(int a, int b, int *div, int *mod)
+int	ft_recursive_factorial(int nb)
 {
-	*div = a / b;
-	*mod = a % b;
+	if (nb <= 1)
+	{
+		return (1);
+	}
+	return (nb * ft_recursive_factorial(nb - 1));
 }
 
 /*
 #include <stdio.h>
 
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	if (argc == 3)
-	{
-		int	a, b, div, mod;
+	int	a;
 
-		a = argv[1][0] - 48;
-		b = argv[2][0] - 48;
-		ft_div_mod(a, b, &div, &mod);
-		printf("%d over %d is %d remainder %d \n", a, b, div, mod);
-	}
+	a = 7;
+	printf("factorial of %d is %d\n", a, ft_recursive_factorial(a));
 	return (0);
 }
 */

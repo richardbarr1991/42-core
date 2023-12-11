@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 void	ft_swap(int *a, int *b)
 {
-	int	c;
-	c = *a;
+	int	temp;
+
+	temp = *a;
 	*a = *b;
-	*b = c;
-	printf("%d", *a);
-	printf("%d", *b);
+	*b = temp;
 }
+
+/*
+#include <stdio.h>
 
 int	main(void)
 {
@@ -30,5 +30,7 @@ int	main(void)
 	a = 1;
 	b = 2;
 	ft_swap(&a, &b);
+	printf("a is now %d, b is now %d\n", a, b);
 	return (0);
 }
+*/

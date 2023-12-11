@@ -1,34 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_div_mod.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 15:50:21 by rbarr             #+#    #+#             */
-/*   Updated: 2023/11/28 15:59:01 by rbarr            ###   ########.fr       */
+/*   Created: 2023/11/28 17:15:36 by rbarr             #+#    #+#             */
+/*   Updated: 2023/11/28 17:32:02 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_div_mod(int a, int b, int *div, int *mod)
+int	ft_strcmp(char *s1, char *s2)
 {
-	*div = a / b;
-	*mod = a % b;
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i])
+	{
+		if (s1[i] == '\0')
+		{
+			return (0);
+		}
+		i++;
+	}
+	if (s1[i] != s2[i])
+	{
+		return (s1[i] - s2[i]);
+	}
+	return (0);
 }
 
 /*
 #include <stdio.h>
+#include <string.h>
 
 int	main(int argc, char *argv[])
 {
 	if (argc == 3)
 	{
-		int	a, b, div, mod;
-
-		a = argv[1][0] - 48;
-		b = argv[2][0] - 48;
-		ft_div_mod(a, b, &div, &mod);
-		printf("%d over %d is %d remainder %d \n", a, b, div, mod);
+		printf("ft_strcmp is %d\n", ft_strcmp(argv[1], argv[2]));
+		printf("strcmp is %d\n", strcmp(argv[1], argv[2]));
 	}
 	return (0);
 }

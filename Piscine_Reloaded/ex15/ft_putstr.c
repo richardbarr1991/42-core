@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_div_mod.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 15:50:21 by rbarr             #+#    #+#             */
-/*   Updated: 2023/11/28 15:59:01 by rbarr            ###   ########.fr       */
+/*   Created: 2023/11/28 16:54:52 by rbarr             #+#    #+#             */
+/*   Updated: 2023/11/28 16:59:04 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_div_mod(int a, int b, int *div, int *mod)
+#include <unistd.h>
+
+void	ft_putchar(int c)
 {
-	*div = a / b;
-	*mod = a % b;
+	write(1, &c, 1);
 }
 
-/*
-#include <stdio.h>
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
 
 int	main(int argc, char *argv[])
 {
-	if (argc == 3)
+	if (argc == 2)
 	{
-		int	a, b, div, mod;
-
-		a = argv[1][0] - 48;
-		b = argv[2][0] - 48;
-		ft_div_mod(a, b, &div, &mod);
-		printf("%d over %d is %d remainder %d \n", a, b, div, mod);
+		ft_putstr(argv[1]);
 	}
 	return (0);
 }
-*/
