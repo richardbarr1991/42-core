@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 13:54:24 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:16:07 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/11 13:14:28 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/11 13:14:30 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+int
+	ft_isprint(int c)
 {
-	if (c > 96 && c < 123)
-	{
-		c -= 32;
-	}
-	return (c);
+	return (c >= 32 && c <= 126);
 }
-
-/*
-int	main(int argc, char *argv[])
-{
-	char	c;
-
-	c = argv[1][0];
-	if (argc == 2)
-	{
-		printf("%c -> %c", c, ft_toupper(c));
-		argv[1][0] = 'a';
-	}
-	return (0);
-}
-*/

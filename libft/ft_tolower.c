@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:55:03 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:39:57 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/11 11:51:53 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/11 16:10:08 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+int	ft_tolower(int c)
 {
-	if (c >= 0 && c <= 127)
+	if (c >= 'A' && c <= 'Z')
 	{
-		return (1);
+		c += 32;
 	}
-	return (0);
+	return (c);
 }
 
 /*
-#include <stdio.h>
-#include <ctype.h>
-
 int	main(int argc, char *argv[])
 {
+	char	c;
+
+	c = argv[1][0];
 	if (argc == 2)
 	{
-		printf("%d\n", ft_isascii((int)argv[1][0]));
-		printf("%d\n", isascii((int)argv[1][0]));
+		printf("%c -> %c", c, ft_tolower(c));
+		argv[1][0] = 'a';
 	}
 	return (0);
 }

@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:55:03 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:39:57 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/11 14:33:28 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/11 17:51:00 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	if (c >= 0 && c <= 127)
-	{
-		return (1);
-	}
-	return (0);
+	void	*array;
+
+	array = (void *)malloc(nmemb * size);
+	if (array == NULL)
+		return (NULL);
+	ft_bzero(array, (nmemb * size));
+	return (array);
 }
 
 /*
 #include <stdio.h>
-#include <ctype.h>
-
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	if (argc == 2)
-	{
-		printf("%d\n", ft_isascii((int)argv[1][0]));
-		printf("%d\n", isascii((int)argv[1][0]));
-	}
+	int	i;
+	int	j;
+
+	i = 2;
+	j = 5;
+	printf("%s\n", (char *)ft_calloc(i, j));	
 	return (0);
 }
 */

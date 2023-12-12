@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:55:03 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:39:57 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/11 12:56:36 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/12 11:41:26 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (c >= 0 && c <= 127)
+	size_t	i;
+
+	i = 0;
+	while (i < n)
 	{
-		return (1);
+		if (*(unsigned char *)(s + i) == (unsigned char)c)
+			return ((void *)(s + i));
+		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 /*
 #include <stdio.h>
-#include <ctype.h>
-
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	if (argc == 2)
-	{
-		printf("%d\n", ft_isascii((int)argv[1][0]));
-		printf("%d\n", isascii((int)argv[1][0]));
-	}
+	const char	*str = "hello";
+	char	c = 'l';
+	size_t	n = 2;
+
+	printf("%s\n", (char *)ft_memchr((const char *)str, c, n));
 	return (0);
 }
 */

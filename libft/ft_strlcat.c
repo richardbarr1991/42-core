@@ -3,35 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:09:10 by rbarr             #+#    #+#             */
-/*   Updated: 2023/11/13 15:49:59 by rbarr            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:31:41 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-size_t	strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	l;
+	size_t	s;
+	size_t	d;
+	size_t	di;
+	size_t	si;
 
-	i = 0;
-	l = 0;
-	while (dst[i])
+	si = ft_strlen(src);
+	if (!dst && size == 0)
+		return (si);
+	d = ft_strlen(dst);
+	di = d;
+	if (size <= di)
+		return (size + si);
+	s = 0;
+	while (src[s] && d + 1 < size)
 	{
-		i++;
+		dst[d] = src[s];
+		s++;
+		d++;
 	}
-	while (l < size)
-	{
-		dst[i] = src[l];
-		i++;
-		l++;
-	}
-	return (0);
+	dst[d] = 0;
+	return (di + si);
 }
 
+/*
 int	main(int argc, char *argv[])
 {
 	if (argc == 3)
@@ -41,3 +47,4 @@ int	main(int argc, char *argv[])
 	}
 	return (0);
 }
+*/

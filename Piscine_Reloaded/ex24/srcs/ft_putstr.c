@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:55:03 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:39:57 by rbarr            ###   ########.fr       */
+/*   Created: 2023/11/28 16:54:52 by rbarr             #+#    #+#             */
+/*   Updated: 2023/11/28 16:59:04 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-int	ft_isascii(int c)
+void	ft_putchar(int c)
 {
-	if (c >= 0 && c <= 127)
-	{
-		return (1);
-	}
-	return (0);
+	write(1, &c, 1);
 }
 
-/*
-#include <stdio.h>
-#include <ctype.h>
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
 
 int	main(int argc, char *argv[])
 {
 	if (argc == 2)
 	{
-		printf("%d\n", ft_isascii((int)argv[1][0]));
-		printf("%d\n", isascii((int)argv[1][0]));
+		ft_putstr(argv[1]);
 	}
 	return (0);
 }
-*/

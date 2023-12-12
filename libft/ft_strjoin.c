@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 14:55:03 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:39:57 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/11 15:37:18 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/11 19:33:00 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (c >= 0 && c <= 127)
-	{
-		return (1);
-	}
-	return (0);
-}
+	char	*str;
+	size_t	i;
+	size_t	j;
 
-/*
-#include <stdio.h>
-#include <ctype.h>
-
-int	main(int argc, char *argv[])
-{
-	if (argc == 2)
+	str = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
 	{
-		printf("%d\n", ft_isascii((int)argv[1][0]));
-		printf("%d\n", isascii((int)argv[1][0]));
+		str[j++] = s1[i];
+		i++;
 	}
-	return (0);
+	i = 0;
+	while (s2[i])
+	{
+		str[j++] = s2[i];
+		i++;
+	}
+	str[j] = 0;
+	return (str);
 }
-*/

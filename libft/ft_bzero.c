@@ -3,28 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:13:43 by rbarr             #+#    #+#             */
-/*   Updated: 2023/11/13 17:25:22 by rbarr            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:10:55 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 void	ft_bzero(void *str, size_t n)
 {
-	unsigned char	*ptr = str;
-	size_t	i;
+	unsigned char	*ptr;
+	size_t			i;
 
+	ptr = str;
 	i = 0;
 	while (i < n)
 	{
 		ptr[i] = '\0';
 		i++;
 	}
-	return;
+	return ;
 }
+
+/*
+#include <stdio.h>
 
 int	main(void)
 {
@@ -35,3 +39,4 @@ int	main(void)
 	printf("%s\n", buffer);
 	return (0);
 }
+*/

@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:41:47 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:15:29 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/11 15:44:49 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/11 20:12:41 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
 size_t	ft_strlen(const char *str)
 {
 	size_t	len;
@@ -24,18 +25,43 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
+char	asciiup(unsigned int i, char c)
+{
+	c += i;
+	return (c);
+}
+*/
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned
+int, char))
+{
+	unsigned int	i;
+	unsigned int	length;
+	char			*res;
+
+	if (!s)
+		return (NULL);
+	length = ft_strlen(s);
+	res = malloc(length * sizeof(char) + 1);
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (i < length)
+	{
+		res[i] = (*f)(i, s[i]);
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
 /*
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-
-int	main(int argc, char *argv[])
+int	main(void)
 {
-	if (argc == 2)
-	{
-		printf("%zu\n", ft_strlen(argv[1]));
-		printf("%zu\n", strlen(argv[1]));
-	}
+	char	*s = "hello";
+
+	printf("%s\n", ft_strmapi(s, asciiup));
 	return (0);
 }
 */

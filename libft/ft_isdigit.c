@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:32:33 by rbarr             #+#    #+#             */
-/*   Updated: 2023/11/15 14:39:25 by rbarr            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:06:43 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {
@@ -19,6 +21,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
+/*
 #include <stdio.h>
 #include <ctype.h>
 
@@ -31,3 +34,4 @@ int	main(int argc, char *argv[])
 	}
 	return (0);
 }
+*/
