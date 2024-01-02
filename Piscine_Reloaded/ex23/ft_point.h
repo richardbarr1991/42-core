@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_point.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 16:54:52 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/12 17:25:21 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/12 16:36:58 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/12 16:37:22 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_POINT_H
+# define FT_POINT_H
 
-void	ft_putchar(int c)
+typedef struct s_point
 {
-	write(1, &c, 1);
-}
+	int	x;
+	int	y;
+}	t_point;
 
-void	ft_putstr(char *str)
-{
-	int	i;
+void	set_point(t_point *point);
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
+#endif

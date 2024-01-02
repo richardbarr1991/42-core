@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 16:54:52 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/12 17:25:21 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/19 12:24:55 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/19 12:32:17 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-void	ft_putchar(int c)
-{
-	write(1, &c, 1);
-}
+#include <unistd.h>
 
-void	ft_putstr(char *str)
-{
-	int	i;
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
+# endif

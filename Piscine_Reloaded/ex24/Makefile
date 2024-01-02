@@ -1,12 +1,24 @@
-SRCS: srcs/ft_putstr.c 
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/12 17:28:55 by rbarr             #+#    #+#              #
+#    Updated: 2023/12/12 17:28:59 by rbarr            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-OBJS: $(SRCS:.c=.o)
+SRCS = srcs/ft_putstr.c 
 
-CC: gcc
-CFLAGS: -Wall -Wextra -Werror
-RM: rm -f
+OBJS = $(SRCS:.c=.o)
 
-NAME: libft.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
+
+NAME = libft.a
 
 all: $(NAME)
 

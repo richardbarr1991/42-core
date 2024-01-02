@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_ptr_address.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42berlin.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 16:54:52 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/12 17:25:21 by rbarr            ###   ########.fr       */
+/*   Created: 2023/12/19 15:33:16 by rbarr             #+#    #+#             */
+/*   Updated: 2023/12/19 15:40:22 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-void	ft_putchar(int c)
+int	main(void)
 {
-	write(1, &c, 1);
-}
+	int	i = 42;
+	int	*ptr = &i;
 
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
+	printf("%p\n", ptr);
+	return (0);
 }
