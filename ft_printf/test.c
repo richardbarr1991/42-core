@@ -5,19 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 17:13:42 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/02 17:55:05 by rbarr            ###   ########.fr       */
+/*   Created: 2024/01/03 13:58:01 by rbarr             #+#    #+#             */
+/*   Updated: 2024/01/03 15:10:55 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 int	main(void)
 {
-	const char	*str = "hello";
+	int	i;
 
-	printf("count is: %d\n", printf("hi %c_%s_%p_%%\n", 'a', str, str));
-	printf("count is: %d\n", ft_printf("hi %c_%s_%p_%%\n", 'a', str, str));
+	i = 0;
+	printf("l: %d\n", printf("%%_%c_%s_%p_%d_%i\n", 'a', "hi", &i, 42, 420));
+	printf("l: %d\n", ft_printf("%%_%c_%s_%p_%d_%i\n", 'a', "hi", &i, 42, 420));
 	return (0);
 }

@@ -1,30 +1,20 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/02 16:32:33 by rbarr             #+#    #+#              #
-#    Updated: 2024/01/02 17:33:13 by rbarr            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 CC:= cc
 FLAGS:= -Wall -Wextra -Werror
-SRCS:= test.c ft_printf.c ft_putchar.c ft_putstr.c ft_putaddress.c ft_puthexlo.c
-OBJS:= ${SRCS:.c=.o}
+SRCS:= ft_printf.c ft_putchar.c ft_putstr.c ft_print_address.c ft_print_hex.c ft_print_dec.c
+TEST:= test.c
+OBJS = $(SRCS:.c=.o)
 RM:= rm -f
-NAME:= libft.a
+NAME:= libftprintf.a
 
-all: comp
+all: ${NAME}
+
+${NAME}: ${OBJS}
+	ar rcs ${NAME} ${OBJS}
+
+run:
+	${CC} ${FLAGS} ${SRCS} ${TEST}
 	./a.out
-
-comp: norm
-	${CC} ${FLAGS} ${SRCS}
-
-norm:
-	norminette ${SRCS}
+	${RM} test.o a.out
 
 clean:
 	${RM} ${OBJS}
@@ -32,7 +22,6 @@ clean:
 fclean: clean
 	${RM} ${NAME}
 
-re: fclean
-	${NAME}
+re: fclean all
 
-.PHONY: clean, fclean, re
+.PHONY: all clean fclean re

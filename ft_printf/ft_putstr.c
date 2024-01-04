@@ -5,21 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 17:24:01 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/02 17:25:51 by rbarr            ###   ########.fr       */
+/*   Created: 2024/01/03 14:12:31 by rbarr             #+#    #+#             */
+/*   Updated: 2024/01/03 15:08:39 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *str)
 {
-	int	i;
-	int	count;
+	int	len;
 
-	i = 0;
-	count = 0;
-	while (str[i] != '\0')
-		count += ft_putchar(str[i++]);
-	return (count);
+	len = 0;
+	while (*str)
+	{
+		ft_putchar(*str++);
+		len++;
+	}
+	return (len);
 }

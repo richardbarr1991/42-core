@@ -5,37 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/02 16:15:21 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/02 17:58:10 by rbarr            ###   ########.fr       */
+/*   Created: 2024/01/03 13:47:14 by rbarr             #+#    #+#             */
+/*   Updated: 2024/01/03 15:08:46 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	fmt_switch(char *format, va_list args)
 {
-	int		count;
-	va_list	arg;
+	if (*format == '%')
+		return (ft_putchar('%'));
+	else if (*format == 'c')
+		return (ft_putchar(va_arg(args, int)));
+	else if (*format == 's')
+		return (ft_putstr(va_arg(args, char *)));
+	else if (*format == 'p')
+		return (ft_print_address(va_arg(args, void *)));
+	else if (*format == 'd')
+		return (ft_print_dec(va_arg(args, int)));
+	else if (*format == 'i')
+		return (ft_print_dec(va_arg(args, int)));
+	else if (*format == 'x' || *format == 'X')
+		return (ft_print_hex(va_arg(args, unsigned int), *format));
+	return (0);
+}
 
-	count = 0;
-	va_start(arg, format);
+int	ft_printf(char *format, ...)
+{
+	va_list	args;
+	int		len;
+
+	len = 0;
+	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%' && format[1])
+		if (*format == '%')
 		{
-			if (*(format + 1) == 'c')
-				count += ft_putchar(va_arg(arg, int));
-			if (*(format + 1) == 's')
-				count += ft_putstr(va_arg(arg, char *));
-			if (*(format + 1) == 'p')
-				count += ft_putaddress(va_arg(arg, void *));
-			if (*(format + 1) == '%')
-				count += ft_putchar('%');
-			format += 2;
+			len += fmt_switch(++format, args);
+			format++;
 		}
 		else
-			count += ft_putchar(*format++);
+			len += ft_putchar(*format++);
 	}
-	va_end(arg);
-	return (count);
+	va_end(args);
+	return (len);
 }
