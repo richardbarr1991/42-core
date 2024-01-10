@@ -6,7 +6,7 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:47:14 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/03 15:08:46 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/01/09 12:55:14 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ int	fmt_switch(char *format, va_list args)
 		return (ft_putstr(va_arg(args, char *)));
 	else if (*format == 'p')
 		return (ft_print_address(va_arg(args, void *)));
-	else if (*format == 'd')
-		return (ft_print_dec(va_arg(args, int)));
-	else if (*format == 'i')
+	else if (*format == 'd' || *format == 'i')
 		return (ft_print_dec(va_arg(args, int)));
 	else if (*format == 'x' || *format == 'X')
 		return (ft_print_hex(va_arg(args, unsigned int), *format));

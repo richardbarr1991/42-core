@@ -1,16 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_hex.c                                     :+:      :+:    :+:   */
+/*   ft_printf_dec_hex.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 14:19:33 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/03 15:08:32 by rbarr            ###   ########.fr       */
+/*   Created: 2024/01/09 13:00:24 by rbarr             #+#    #+#             */
+/*   Updated: 2024/01/09 13:41:07 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	ft_put_dec(int i)
+{
+	if (i > 9)
+		ft_put_dec(i / 10);
+	ft_putchar((i % 10) + '0');
+}
+
+int	ft_print_dec(int i)
+{
+	int	len;
+	int	temp;
+
+	len = 0;
+	if (i == -2147483648)
+	{
+		len += ft_putchar('-');
+		len += ft_putchar('2');
+		i = 147483648;
+	}
+	if (i < 0)
+	{
+		len += ft_putchar('-');
+		i *= -1;
+	}
+	temp = i;
+	while (temp > 9)
+	{
+		temp /= 10;
+		len++;
+	}
+	ft_put_dec(i);
+	return (++len);
+}
 
 static int	ft_hex_len(unsigned long long ull)
 {

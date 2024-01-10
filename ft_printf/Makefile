@@ -1,20 +1,15 @@
-CC:= cc
+CC:= clang
 FLAGS:= -Wall -Wextra -Werror
-SRCS:= ft_printf.c ft_putchar.c ft_putstr.c ft_print_address.c ft_print_hex.c ft_print_dec.c
-TEST:= test.c
+SRCS:= ft_printf.c ft_printf_utils.c ft_printf_dec_hex.c
 OBJS = $(SRCS:.c=.o)
 RM:= rm -f
 NAME:= libftprintf.a
+TEST:= test.c
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
 	ar rcs ${NAME} ${OBJS}
-
-run:
-	${CC} ${FLAGS} ${SRCS} ${TEST}
-	./a.out
-	${RM} test.o a.out
 
 clean:
 	${RM} ${OBJS}
@@ -25,3 +20,8 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+run:
+	${CC} ${FLAGS} ${SRCS} ${TEST}
+	./a.out
+	${RM} test.o a.out
