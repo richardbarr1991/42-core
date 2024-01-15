@@ -6,17 +6,18 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:00:24 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/09 13:41:07 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/01/11 15:46:19 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_put_dec(int i)
+int	ft_put_dec(int i)
 {
 	if (i > 9)
 		ft_put_dec(i / 10);
 	ft_putchar((i % 10) + '0');
+	return (0);
 }
 
 int	ft_print_dec(int i)

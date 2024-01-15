@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lotte_test.c                                       :+:      :+:    :+:   */
+/*   test-lotte.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:11:52 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/09 15:16:29 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/01/15 12:05:56 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,9 @@ int main(void)
     int returnv3;
     int preturnv3;
     int returnv4;
+    int preturnv4;
+    int returnv105;
+    int preturnv105;
     printf("\n\n\n");
     printf("***TESTS FOR %%%%***\n\n");
     returnv2 = ft_printf("Percentage sign example: %%\n");
@@ -193,8 +196,17 @@ int main(void)
     printf("Printf return value: %i\n\n", preturnv3);
     returnv4 = ft_printf("Wrong percentage sign example: %, \
     and the list goes on\n");
-    printf("\n");
+    preturnv4 = printf("Wrong percentage sign example: %, \
+    and the list goes on\n");
     printf("My return value: %i\n", returnv4);
+    printf("printf return value: %i\n", preturnv4);
+    returnv105 = ft_printf("% Wrong percentage sign example: %) \
+    and the list goes on\n");
+    preturnv105 = printf("% Wrong percentage sign example: %) \
+    and the list goes on\n");
+    printf("My return value: %i\n", returnv105);
+    printf("printf return value: %i\n", preturnv105);
+    printf("\n");
     // tests with different conversions
     int returnv20;
     int preturnv20;

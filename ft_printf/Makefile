@@ -1,5 +1,5 @@
-CC:= clang
-FLAGS:= -Wall -Wextra -Werror
+CC:= cc
+FLAGS:= -Wall -Wextra
 SRCS:= ft_printf.c ft_printf_utils.c ft_printf_dec_hex.c
 OBJS = $(SRCS:.c=.o)
 RM:= rm -f
