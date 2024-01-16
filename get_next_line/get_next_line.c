@@ -6,14 +6,11 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:56:20 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/04 17:34:45 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/01/15 15:33:30 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+#include "get_next_line.h"
 
 int	ft_strlen(char *str)
 {
