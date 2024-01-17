@@ -1,7 +1,7 @@
 CC:=	cc
 FLAGS:=	-Wall -Wextra -Werror
-SRCS:=	get_next_line.c
+SRCS:=	get_next_line.c get_next_line_utils.c
 
 all:
-	cc -g get_next_line.c -D BUFFER_SIZE=5
+	cc -g ${SRCS} -D BUFFER_SIZE=11
 	./a.out
