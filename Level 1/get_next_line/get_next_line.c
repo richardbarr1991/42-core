@@ -3,77 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 15:56:20 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/15 15:33:30 by rbarr            ###   ########.fr       */
+/*   Created: 2024/01/15 15:44:26 by rbarr             #+#    #+#             */
+/*   Updated: 2024/01/19 21:03:09 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[0] != '\0')
-		i++;
-	return (i);
-}
-
-void	ft_strlcpy(char *dest, char *src, int size)
-{
-	int	i;
-
-	i = 0;
-	if (size != 0)
-	{
-		while (i < (size - 1) && src [i] != '\n')
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
-	}
-}
-
-int	ft_line_len(char *buffer)
-{
-	int	i;
-
-	i = 0;
-	while (buffer[i] != '\n')
-		i++;
-	return(i);
-}
-
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
-	static char	line[BUFFER_SIZE];
+	static char	*remainder;
+	char		*buffer;
+	char		*stash;
+	char		*nextline;
+	int			bytes_read;
 
-	int	line_len;
-	if (buffer[0] == '\0')
-		read(fd, buffer, BUFFER_SIZE);
-	if (line[0] != '\0')
+	bytes_read = 0;
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	stash = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	nextline = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (NULL == buffer || NULL == stash || NULL == nextline)
+		return (NULL);
+	if (NULL == remainder)
 	{
-		printf("line aint null\n");
-		buffer += ft_strlen(line);
-		ft_strlcpy(line, buffer, BUFFER_SIZE);
+		remainder = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	}
-	else
-		ft_strlcpy(line, buffer, BUFFER_SIZE);
-	return (line);
-}
-
-int	main(void)
-{
-	int	fd;
-
-	fd = open("sample.txt", O_RDWR);
-	printf("fd is %d\n", fd);
-	printf("read bytes is:\n%s\n", get_next_line(fd));
-	printf("read bytes is:\n%s\n", get_next_line(fd));
-	return (0);
+	if (NULL == remainder)
+		return (NULL);
+	bytes_read += read(fd, buffer, BUFFER_SIZE);
+	if (bytes_read <= 0)
+		return (NULL);
+	stash = ft_strjoin(stash, buffer);
+	while (!nl_found(stash))
+	{
+		bytes_read += read(fd, buffer, BUFFER_SIZE);
+		stash = ft_strjoin(stash, buffer);
+	}
+	printf("remainder string is: %s \n", remainder);
+	nextline = fill_nl(stash, remainder);
+	return (nextline);
 }

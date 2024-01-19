@@ -1,7 +1,19 @@
-CC:=	cc
-FLAGS:=	-Wall -Wextra -Werror
-SRCS:=	get_next_line.c
+CC:= cc
+FLAGS:=	-Wall -Wextra
+SRCS:=	get_next_line.c get_next_line_utils.c
+RM:= rm -f
+TEST:= test.c
 
 all:
-	cc -g get_next_line.c -D BUFFER_SIZE=100
+	cc get_next_line.c get_next_line_utils.c test.c
 	./a.out
+
+clean:
+	${RM} ${OBJS}
+
+fclean: clean
+	${RM} ${NAME}
+
+re: fclean all
+
+.PHONY: all clean fclean re
