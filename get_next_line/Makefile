@@ -1,5 +1,5 @@
-CC:= cc
-FLAGS:=	-Wall -Wextra
+CC:= gcc
+FLAGS:=	-Wall -Wextra -g
 SRCS:=	get_next_line.c get_next_line_utils.c
 RM:= rm -f
 TEST:= test.c

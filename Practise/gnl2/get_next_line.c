@@ -6,11 +6,56 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:44:26 by rbarr             #+#    #+#             */
-/*   Updated: 2024/01/17 17:52:27 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/01/22 17:04:25 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	ft_scanbuffer(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (0);
+		i++;
+	}
+	if (i == BUFFER_SIZE)
+		return (1);
+	return (0);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	len;
+	size_t	i;
+	size_t	j;
+
+	len = ft_strlen(s1) + ft_strlen(s2);
+	printf("strjoinlen is: %zu\n", len);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		str[j++] = s1[i];
+		i++;
+	}
+	i = 0;
+	while (s2[i])
+	{
+		str[j++] = s2[i];
+		i++;
+	}
+	str[j] = 0;
+	return (str);
+}
 
 char	*get_next_line(int fd)
 {
@@ -19,40 +64,27 @@ char	*get_next_line(int fd)
 	char		*stash;
 	char		*nextline;
 	int			bytes_read;
-	int			i;
 
-	printf("remainder is %s\n", remainder);
-	i = 0;
 	bytes_read = 0;
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	stash = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	nextline = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	remainder = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	remainder[0] = 'a';
-	remainder[1] = 'b';
-	remainder[2] = '\0';
 	if (NULL == buffer || NULL == stash || NULL == nextline)
 		return (NULL);
+	if (NULL == remainder)
+		remainder = (char)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (NULL == remainder)
+		return (NULL);
 	bytes_read += read(fd, buffer, BUFFER_SIZE);
+	printf("\n bytes read is: %d \n", bytes_read);
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (NULL);
 	stash = ft_strjoin(stash, buffer);
-	while (!nl_found(stash))
+	while (ft_scanbuffer(buffer))
 	{
 		bytes_read += read(fd, buffer, BUFFER_SIZE);
 		stash = ft_strjoin(stash, buffer);
 	}
-	nextline = fill_nl(stash, remainder);
-	return (nextline);
-}
-
-int	main(void)
-{
-	int		fd;
-	char	*mynextline;
-
-	fd = open("file1.txt", O_RDONLY);
-	mynextline = get_next_line(fd);
-	printf("%s\n", mynextline);
-	mynextline = get_next_line(fd);
-	printf("%s\n", mynextline);
-	return (0);
+	return (stash);
 }
