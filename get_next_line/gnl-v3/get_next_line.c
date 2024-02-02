@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl-v3.c                                           :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:46:22 by richardbarr       #+#    #+#             */
-/*   Updated: 2024/02/02 17:47:17 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/02 20:44:21 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include "get_next_line.h"
 
 int	ft_strlen(char *str)
 {
@@ -71,33 +71,64 @@ int	ft_strchr(char *str, char c)
 	return (0);
 }
 
-char	*fillstash(int fd, char *buffer, char *remainder)
+char	*fill_line(int fd, char *buf, char *stash)
 {
 	char	*temp;
 	int		bytes_read;
 
-	if (!remainder)
-		remainder = ft_strdup("hi! ");
-	temp = remainder;
+	if (!stash)
+		stash = ft_strdup("");
+	temp = stash;
 	bytes_read = BUFFER_SIZE;
 	while (bytes_read == BUFFER_SIZE)
 	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		buffer[bytes_read] = '\0';
-		temp = ft_strjoin(temp, buffer);
-		if (ft_strchr(buffer, '\n'))
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		buf[bytes_read] = '\0';
+		temp = ft_strjoin(temp, buf);
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	return (temp);
 }
 
-char	*gnl(int fd)
+char	*fill_stash(char *line)
 {
-	static char	*remainder;
-	char		*buffer;
-	char		*stash;
+	char	*temp;
+	int		i;
+	int		j;
 
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	stash = fillstash(fd, buffer, remainder);
-	return (stash);
+	temp = ft_strdup("");
+	i = 0;
+	while (line[i++] != '\n')
+		;
+	j = 0;
+	while (line[i])
+		temp[j++] = line[i++];
+	temp[j] = '\0';
+	return (temp);
+}
+
+void	clean_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\n')
+		i++;
+	while (line[i++])
+		line[i] = '\0';
+	return ;
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*stash;
+	char		*buf;
+	char		*line;
+
+	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	line = fill_line(fd, buf, stash);
+	stash = fill_stash(line);
+	clean_line(line);
+	return (line);
 }
