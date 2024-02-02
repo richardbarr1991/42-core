@@ -6,7 +6,7 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:56:26 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/01 17:35:28 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/02 16:54:11 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,77 +14,64 @@
 
 int	ft_strlen(char *str)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strdup(char *str)
 {
-	char	*str;
+	char	*new;
 	int		i;
-	int		j;
 
-	i = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
-		return (NULL);
-	str[0] = '\0';
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i++] = s2[j++];
-	}
-	str[i] = '\0';
-	free(s1);
-	free(s2);
-	return (str);
-}
-
-int	ft_nlfound(char *str)
-{
-	int	i;
-
+	new = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
+	if (!new)
+		return (0);
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n')
-			return (1);
+		new[i] = str[i];
 		i++;
 	}
-	return (0);
+	new[i] = '\0';
+	printf("new is: %s\n", new);
+	return (new);
+}
+
+char	*fillstash(int fd, char *buffer, char *remainder)
+{
+	char	*temp;
+	int		bytes_read;
+
+	bytes_read = 1;
+	while (bytes_read)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (!remainder)
+			remainder = ft_strdup("hi");
+		temp = remainder;
+		temp = ft_strjoin(temp, buffer);
+
+	}
+	// free(temp);
+	return (temp);
 }
 
 char	*gnlv4(int fd)
 {
-	char	*buffer;
-	char	*stash;
-	int		bytes_read;
-	int		nlfound;
+	static char	*remainder;
+	char		*buffer;
+	char		*stash;
 
-	stash = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (stash == NULL)
-		return (NULL);
-	stash[0] = '\0';
-	bytes_read = BUFFER_SIZE;
-	nlfound = 0;
-	while (bytes_read == BUFFER_SIZE && nlfound == 0)
-	{
-		buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (buffer == NULL)
-			return (NULL);
-		buffer[0] = '\0';
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		stash = ft_strjoin(stash, buffer);
-		nlfound = ft_nlfound(buffer);
-	}
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (0);
+	free(buffer);
+	stash = fillstash(fd, buffer, remainder);
 	return (stash);
 }

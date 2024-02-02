@@ -5,21 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 15:51:08 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/02 16:42:10 by rbarr            ###   ########.fr       */
+/*   Created: 2024/01/30 16:51:33 by richardbarr       #+#    #+#             */
+/*   Updated: 2024/02/02 17:31:27 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnlv4.h"
+#include	"gnl.h"
 
 int	main(void)
 {
-	char	*nextline;
 	int		fd;
+	char	*nextline;
 
-	fd = open("file.txt", O_RDONLY);
-	nextline = gnlv4(fd);
+	fd = open("sample.txt", O_RDONLY);
+	nextline = gnl(fd);
 	printf("%s\n", nextline);
-	// free(nextline);
+	free(nextline);
 	return (0);
 }

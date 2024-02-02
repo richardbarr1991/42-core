@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   gnl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 15:51:08 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/02 16:42:10 by rbarr            ###   ########.fr       */
+/*   Created: 2024/01/30 16:47:24 by richardbarr       #+#    #+#             */
+/*   Updated: 2024/02/02 17:37:35 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnlv4.h"
+#ifndef GNL_H
+# define GNL_H
 
-int	main(void)
-{
-	char	*nextline;
-	int		fd;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 2
+# endif
 
-	fd = open("file.txt", O_RDONLY);
-	nextline = gnlv4(fd);
-	printf("%s\n", nextline);
-	// free(nextline);
-	return (0);
-}
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+
+char	*gnl(int fd);
+
+#endif
