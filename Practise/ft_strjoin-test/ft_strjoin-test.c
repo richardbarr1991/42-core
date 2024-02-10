@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin-test.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:46:22 by richardbarr       #+#    #+#             */
-/*   Updated: 2024/02/02 17:26:13 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/10 10:27:51 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,12 @@ int	main(void)
 {
 	static char	*s1 = "hello";
 	char		*s2;
+	char		*joined;
 
 	s2 = ft_strdup("wow");
-	printf("%s\n", ft_strjoin(s1, s2));
+	joined = ft_strjoin(s1, s2);
+	printf("%s\n", joined);
+	free (s2);
+	free (joined);
 	return (0);
 }

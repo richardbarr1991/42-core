@@ -6,7 +6,7 @@
 /*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:47:24 by richardbarr       #+#    #+#             */
-/*   Updated: 2024/02/02 20:45:27 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/08 19:27:10 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-char	*get_next_line(int fd);
+char	*get_next_line(int);
+char	*ft_strjoin(char *, char *);
+char	*join_free(char *, char *);
 
 #endif
