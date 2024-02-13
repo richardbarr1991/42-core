@@ -21,6 +21,9 @@ valg:
 	${CC} ${CFLAGS} ${BUF_SIZE} ${SRCS} -o ${OUT}
 	${VALG} ./${OUT}
 
+docker:
+	valg
+
 clean:
 	${RM} ${OUT}
 
