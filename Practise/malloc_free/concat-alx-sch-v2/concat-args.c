@@ -18,7 +18,7 @@ char	*concatenate_args(int argc, char **argv)
 			return (NULL);
 		}
 		temp = concat_str;
-		concat_str = ft_strjoin(concat_str, arg_with_space_added);
+		concat_str = ft_strjoin(temp, arg_with_space_added);
 		free(arg_with_space_added);
 		if (i != 1)
 			free(temp);
