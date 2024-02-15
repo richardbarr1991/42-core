@@ -6,7 +6,7 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:56:26 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/15 17:08:41 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/15 17:33:06 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,13 @@ void	fill_stash(char *line, char *stash)
 	return ;
 }
 
-char	*read_file(int fd, char *stash)
+char	*read_file(int fd, char *line, char *stash)
 {
 	char	*buf;
-	char	*line;
 	char	*temp;
 	int		bytes_read;
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	line = (char *)ft_calloc(BUFFER_SIZE, sizeof(char));
 	bytes_read = BUFFER_SIZE;
 	while (bytes_read == BUFFER_SIZE && !(strchr(line, '\n')))
 	{
@@ -55,6 +53,7 @@ char	*read_file(int fd, char *stash)
 		if (bytes_read <= 0)
 		{
 			free(buf);
+			free(line);
 			return (NULL);
 		}
 		buf[bytes_read] = '\0';
@@ -72,6 +71,7 @@ char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*line;
+	char		*temp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
@@ -83,7 +83,10 @@ char	*get_next_line(int fd)
 		stash = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!stash)
 		return (NULL);
-	line = read_file(fd, stash);
+	line = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	temp = line;
+	line = read_file(fd, line, stash);
+	free(temp);
 	if (!line)
 		return (NULL);
 	clean_line(line);
