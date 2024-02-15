@@ -3,29 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:56:26 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/13 21:10:05 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/15 17:08:41 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	fill_stash(char *line, char *stash)
+void	clean_line(char *line)
 {
-	char	*temp;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	while (line[i] && line[i] != '\n')
+	while (line[i] != '\n')
+		i++;
+	while (line[i])
+		line[i++] = '\0';
+	return ;
+}
+
+void	fill_stash(char *line, char *stash)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (line[i] != '\n')
 		i++;
 	j = 0;
 	while (line[i])
-		stash[j] = line[i];
-
-	return (temp);
+		stash[j++] = line[i++];
+	stash[j] = '\0';
+	return ;
 }
 
 char	*read_file(int fd, char *stash)
@@ -36,14 +47,18 @@ char	*read_file(int fd, char *stash)
 	int		bytes_read;
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	bytes_read = read(fd, buf, BUFFER_SIZE);
-	buf[bytes_read] = '\0';
-	line = ft_strdup(buf);
+	line = (char *)ft_calloc(BUFFER_SIZE, sizeof(char));
+	bytes_read = BUFFER_SIZE;
 	while (bytes_read == BUFFER_SIZE && !(strchr(line, '\n')))
 	{
-		temp = line;
 		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read <= 0)
+		{
+			free(buf);
+			return (NULL);
+		}
 		buf[bytes_read] = '\0';
+		temp = line;
 		line = ft_strjoin(temp, buf);
 		free(temp);
 	}
@@ -69,5 +84,8 @@ char	*get_next_line(int fd)
 	if (!stash)
 		return (NULL);
 	line = read_file(fd, stash);
+	if (!line)
+		return (NULL);
+	clean_line(line);
 	return (line);
 }

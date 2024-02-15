@@ -6,7 +6,7 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:08:02 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/13 16:51:13 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/15 16:56:20 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,27 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strdup(char *str)
+void	ft_bzero(void *str, size_t n)
 {
-	char	*new;
-	int		i;
+	unsigned char	*ptr;
+	size_t			i;
 
-	new = (char *)malloc((ft_strlen(str) + 1) * sizeof(char));
-	if (!new)
-		return (0);
+	ptr = str;
 	i = 0;
-	while (str[i])
-	{
-		new[i] = str[i];
-		i++;
-	}
-	new[i] = '\0';
-	return (new);
+	while (i < n)
+		ptr[i++] = '\0';
+	return ;
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*array;
+
+	array = (void *)malloc(nmemb * size);
+	if (array == NULL)
+		return (NULL);
+	ft_bzero(array, (nmemb * size));
+	return (array);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

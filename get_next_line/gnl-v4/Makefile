@@ -11,7 +11,7 @@ all:
 	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
 	valgrind ./${OUT}
 
-multi:
+2:
 	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
 	valgrind ./${OUT}
 	${CC} ${CFLAGS} ${BUF_SIZE2} ${SRCS} -o ${OUT}

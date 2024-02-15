@@ -6,7 +6,7 @@
 /*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:13:43 by rbarr             #+#    #+#             */
-/*   Updated: 2023/12/11 16:10:55 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/15 16:56:06 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	ft_bzero(void *str, size_t n)
 	ptr = str;
 	i = 0;
 	while (i < n)
-	{
-		ptr[i] = '\0';
-		i++;
-	}
+		ptr[i++] = '\0';
 	return ;
 }
 
@@ -33,7 +30,7 @@ void	ft_bzero(void *str, size_t n)
 int	main(void)
 {
 	const char	buffer[] = "hello world";
-	
+
 	printf("%s\n", buffer);
 	ft_bzero((void *)buffer, 5);
 	printf("%s\n", buffer);
