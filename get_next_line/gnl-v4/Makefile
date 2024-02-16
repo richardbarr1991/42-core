@@ -21,7 +21,7 @@ all:
 	valgrind ./${OUT}
 
 valg:
-	${CC} ${CFLAGS} ${BUF_SIZE} ${SRCS} -o ${OUT}
+	${CC} ${CFLAGS} ${BUF_SIZE2} ${SRCS} -o ${OUT}
 	${VALG} ./${OUT}
 
 home:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_tester.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:08 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/16 11:13:50 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/16 14:10:56 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ void	gnl_tester(int fd)
 	i = 1;
 	nextline = get_next_line(fd);
 	if (!nextline)
-		printf("fd%d-line%d %s\n", fd, i, nextline);
+		printf("fd%d-line%d '%s'\n", fd, i, nextline);
 	while (nextline)
 	{
-		printf("fd%d-line%d %s\n", fd, i, nextline);
+		printf("fd%d-line%d '%s'\n", fd, i, nextline);
 		free(nextline);
 		nextline = get_next_line(fd);
 		i++;
 	}
+	if (!nextline)
+		printf("fd%d-line%d '%s'\n", fd, i, nextline);
 	if (nextline)
 		free(nextline);
 	return ;
@@ -43,15 +45,16 @@ int	main(void)
 	total_files = 6;
 	files = malloc(total_files * sizeof(char *));
 	files[0] = "empty.txt";
-	files[1] = "1-1.txt";
+	files[1] = "1char.txt";
 	files[2] = "1-5.txt";
 	files[3] = "1-20.txt";
 	files[4] = "2-20.txt";
 	files[5] = "project.txt";
 	i = 0;
-	while (i < total_files)
+	while (i < 6)
 	{
 		snprintf(filepath, sizeof(filepath), "%s%s", "test-files/", files[i]);
+		printf("%s\n", filepath);
 		gnl_tester(open(filepath, O_RDONLY));
 		i++;
 	}

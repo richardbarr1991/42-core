@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:56:26 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/16 11:13:34 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/16 14:10:19 by rbarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ char	*read_file(int fd, char *line)
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	bytes_read = BUFFER_SIZE;
-	while (bytes_read == BUFFER_SIZE && !(strchr(line, '\n')))
+	while (bytes_read == BUFFER_SIZE && !(ft_strchr(line, '\n')))
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
-		if (bytes_read <= 0)
+		if (bytes_read <= 0 && !line[0])
 		{
 			free(buf);
 			free(line);
@@ -101,12 +101,12 @@ char	*get_next_line(int fd)
 	line = read_file(fd, line);
 	if (!line)
 		return (NULL);
-	if (strchr(line, '\n'))
+	if (ft_strchr(line, '\n'))
 	{
 		if (stash)
 			free(stash);
 		stash = fill_stash(line);
+		clean_line(line);
 	}
-	clean_line(line);
 	return (line);
 }
