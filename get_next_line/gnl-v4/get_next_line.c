@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:56:26 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/16 14:10:19 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/22 22:45:45 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	clean_line(char *line)
 	i = 0;
 	while (line[i] != '\n')
 		i++;
-	while (line[i])
-		line[i++] = '\0';
+	while (line[++i])
+		line[i] = '\0';
 	return ;
 }
 

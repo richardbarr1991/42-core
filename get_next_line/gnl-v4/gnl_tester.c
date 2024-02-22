@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gnl_tester.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbarr <rbarr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:08 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/16 14:10:56 by rbarr            ###   ########.fr       */
+/*   Updated: 2024/02/22 22:46:07 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(void)
 	char	filepath[1000];
 	int		i;
 
-	total_files = 6;
+	total_files = 7;
 	files = malloc(total_files * sizeof(char *));
 	files[0] = "empty.txt";
 	files[1] = "1char.txt";
@@ -50,8 +50,9 @@ int	main(void)
 	files[3] = "1-20.txt";
 	files[4] = "2-20.txt";
 	files[5] = "project.txt";
-	i = 0;
-	while (i < 6)
+	files[6] = "nl-only.txt";
+	i = 5;
+	while (i < 7)
 	{
 		snprintf(filepath, sizeof(filepath), "%s%s", "test-files/", files[i]);
 		printf("%s\n", filepath);

@@ -24,6 +24,12 @@ valg:
 	${CC} ${CFLAGS} ${BUF_SIZE2} ${SRCS} -o ${OUT}
 	${VALG} ./${OUT}
 
+carlo:
+	docker run -it -v $PWD:/tmp -w /tmp carlo-ubuntu
+
+paco:
+	sh ~/francinette/tester.sh
+
 home:
 	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
 	./${OUT}
