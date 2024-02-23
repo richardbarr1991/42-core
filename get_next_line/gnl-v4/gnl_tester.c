@@ -6,7 +6,7 @@
 /*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:08 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/23 02:42:32 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/23 02:55:30 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(void)
 	char	filepath[1000];
 	int		i;
 
-	total_files = 7;
+	total_files = 8;
 	files = malloc(total_files * sizeof(char *));
 	files[0] = "empty.txt";
 	files[1] = "1char.txt";
@@ -51,8 +51,9 @@ int	main(void)
 	files[4] = "2-20.txt";
 	files[5] = "project.txt";
 	files[6] = "nl-only.txt";
-	i = 0;
-	while (i < 7)
+	files[7] = "41_with_nl";
+	i = 7;
+	while (i < 8)
 	{
 		snprintf(filepath, sizeof(filepath), "%s%s", "test-files/", files[i]);
 		printf("%s\n", filepath);
