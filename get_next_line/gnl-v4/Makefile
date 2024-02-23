@@ -25,7 +25,7 @@ valg:
 	${VALG} ./${OUT}
 
 carlo:
-	docker run -it -v $PWD:/tmp -w /tmp carlo-ubuntu
+	docker run -it -v $PWD:/home/root carlo-ubuntu
 
 paco:
 	sh ~/francinette/tester.sh
@@ -38,6 +38,14 @@ home2:
 	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
 	./${OUT}
 	${CC} ${CFLAGS} ${BUF_SIZE2} ${SRCS} -o ${OUT}
+	./${OUT}
+
+home3:
+	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
+	./${OUT}
+	${CC} ${CFLAGS} ${BUF_SIZE2} ${SRCS} -o ${OUT}
+	./${OUT}
+	${CC} ${CFLAGS} ${BUF_SIZE3} ${SRCS} -o ${OUT}
 	./${OUT}
 
 clean:

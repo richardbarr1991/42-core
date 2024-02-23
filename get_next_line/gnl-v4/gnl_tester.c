@@ -6,7 +6,7 @@
 /*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:08 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/22 22:46:07 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/23 02:42:32 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	gnl_tester(int fd)
 		i++;
 	}
 	if (!nextline)
-		printf("fd%d-line%d '%s'\n", fd, i, nextline);
+		printf("fd%d-line%d EOF '%s'\n\n", fd, i, nextline);
 	if (nextline)
 		free(nextline);
 	return ;
@@ -51,7 +51,7 @@ int	main(void)
 	files[4] = "2-20.txt";
 	files[5] = "project.txt";
 	files[6] = "nl-only.txt";
-	i = 5;
+	i = 0;
 	while (i < 7)
 	{
 		snprintf(filepath, sizeof(filepath), "%s%s", "test-files/", files[i]);
