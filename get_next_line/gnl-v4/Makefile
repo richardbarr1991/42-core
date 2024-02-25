@@ -21,7 +21,15 @@ all:
 	valgrind ./${OUT}
 
 valg:
+	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
+	${VALG} ./${OUT}
+
+valg2:
 	${CC} ${CFLAGS} ${BUF_SIZE2} ${SRCS} -o ${OUT}
+	${VALG} ./${OUT}
+
+valg3:
+	${CC} ${CFLAGS} ${BUF_SIZE3} ${SRCS} -o ${OUT}
 	${VALG} ./${OUT}
 
 carlo:

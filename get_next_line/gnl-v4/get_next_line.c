@@ -6,7 +6,7 @@
 /*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:56:26 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/22 22:45:45 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/25 15:39:58 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,27 @@ void	clean_line(char *line)
 	return ;
 }
 
-char	*fill_stash(char *line)
+char	*fill_stash(char *line, char *stash)
 {
 	char	*temp;
 	int		i;
 	int		j;
 
+	if (stash != NULL)
+	{
+		free(stash);
+		stash = NULL;
+	}
 	temp = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	i = 0;
 	while (line[i] != '\n')
 		i++;
 	j = 0;
-	i++;
+	if (!line[++i])
+	{
+		free(temp);
+		return (NULL);
+	}
 	while (line[i])
 		temp[j++] = line[i++];
 	temp[j] = '\0';
@@ -48,7 +57,7 @@ char	*read_file(int fd, char *line)
 	char	*temp;
 	int		bytes_read;
 
-	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buf = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	bytes_read = BUFFER_SIZE;
 	while (bytes_read == BUFFER_SIZE && !(ft_strchr(line, '\n')))
 	{
@@ -86,26 +95,28 @@ void	stash_to_line(char *line, char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash = NULL;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
-		if (stash != NULL)
-			free(stash);
+		free(stash);
+		stash = NULL;
 		return (NULL);
 	}
 	line = (char *)ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (stash)
+	if (stash != NULL)
+	{
 		stash_to_line(line, stash);
+		free(stash);
+		stash = NULL;
+	}
 	line = read_file(fd, line);
 	if (!line)
 		return (NULL);
 	if (ft_strchr(line, '\n'))
 	{
-		if (stash)
-			free(stash);
-		stash = fill_stash(line);
+		stash = fill_stash(line, stash);
 		clean_line(line);
 	}
 	return (line);

@@ -6,7 +6,7 @@
 /*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:51:08 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/23 02:55:30 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/25 15:43:56 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,25 @@ void	gnl_tester(int fd)
 		free(nextline);
 		nextline = get_next_line(fd);
 		i++;
+		usleep(100000);
 	}
 	if (!nextline)
 		printf("fd%d-line%d EOF '%s'\n\n", fd, i, nextline);
 	if (nextline)
 		free(nextline);
 	return ;
+}
+
+void	list_files(char **files)
+{
+	files[0] = "empty.txt";
+	files[1] = "1char.txt";
+	files[2] = "1-5.txt";
+	files[3] = "1-20.txt";
+	files[4] = "2-20.txt";
+	files[5] = "project.txt";
+	files[6] = "nl-only.txt";
+	files[7] = "41_with_nl";
 }
 
 int	main(void)
@@ -44,15 +57,8 @@ int	main(void)
 
 	total_files = 8;
 	files = malloc(total_files * sizeof(char *));
-	files[0] = "empty.txt";
-	files[1] = "1char.txt";
-	files[2] = "1-5.txt";
-	files[3] = "1-20.txt";
-	files[4] = "2-20.txt";
-	files[5] = "project.txt";
-	files[6] = "nl-only.txt";
-	files[7] = "41_with_nl";
-	i = 7;
+	list_files(files);
+	i = 0;
 	while (i < 8)
 	{
 		snprintf(filepath, sizeof(filepath), "%s%s", "test-files/", files[i]);
