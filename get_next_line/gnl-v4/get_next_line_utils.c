@@ -6,7 +6,7 @@
 /*   By: richardbarr <richardbarr@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:08:02 by rbarr             #+#    #+#             */
-/*   Updated: 2024/02/25 14:01:45 by richardbarr      ###   ########.fr       */
+/*   Updated: 2024/02/26 22:07:59 by richardbarr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*array;
 
 	array = (void *)malloc(nmemb * size);
-	if (array == NULL)
+	if (!array)
 		return (NULL);
 	ft_bzero(array, (nmemb * size));
 	return (array);

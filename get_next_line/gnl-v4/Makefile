@@ -10,7 +10,6 @@ VALG:= valgrind --leak-check=full
 
 all:
 	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
-	valgrind ./${OUT}
 
 2:
 	${CC} ${CFLAGS} ${BUF_SIZE1} ${SRCS} -o ${OUT}
@@ -60,7 +59,6 @@ clean:
 	${RM} ${OUT}
 
 fclean: clean
-	${RM} a.out
 
 .PHONY:
 	all clean fclean
